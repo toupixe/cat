@@ -35,6 +35,12 @@ public class UserController extends BaseController{
 	@Autowired
 	private ValidatorImplements validator;
 	
+	/**
+	 * 
+	 * <p>Title: getUserInfo</p>  
+	 * <p>Description:获取用户信息 </p>  
+	 * @return
+	 */
 	@RequestMapping("/getUserInfo")
 	@ResponseBody
 	public CommonResponseType getUserInfo() {	
@@ -42,6 +48,7 @@ public class UserController extends BaseController{
 		return CommonResponseType.create(userDto,"success");
 	}
 	
+	/**注册获取验证码*/
 	@RequestMapping("/getTotp")
 	@ResponseBody
 	public CommonResponseType getTotp(String phone) {	
@@ -57,6 +64,14 @@ public class UserController extends BaseController{
 		return CommonResponseType.create(otp,"success");
 	}
 	
+	/**
+	 * 
+	 * <p>Title: register</p>  
+	 * <p>Description: 注册</p>  
+	 * @param userForm
+	 * @return
+	 * @throws BusinessException
+	 */
 	@RequestMapping("/register")
 	@ResponseBody
 	public CommonResponseType register(UserForm userForm) throws BusinessException {	
