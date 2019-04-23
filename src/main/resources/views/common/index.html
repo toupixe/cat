@@ -85,8 +85,9 @@
 			<h2>Welcome To <span>Cat</span></h2> 
 			<div class="wthree-bnr-login">
 					<ul>   
-						<li><input type="text" id="name" name="name" placeholder="Your Name" required=""></li>
-						<li><input type="text" id="email" name="email" placeholder="Your Email" required=""></li>
+						<li><input type="text" id="name" name="name" placeholder="你的姓名" required=""></li>
+						<li><input type="text" id="phone" name="phone" placeholder="你的电话" required=""></li>
+						<li><input type="text" id="valid" name="valid" placeholder="验证码" required=""></li>
 						<li><input type="button" id="register" class="btn btn-primary" value="Register" onclick="commit();"></li>
 					</ul>
 			</div> 
@@ -178,7 +179,7 @@
 			<h3 class="agileits-title">专业技能</h3> 
 			<div class="services-row-agileinfo">
 				<div class="col-sm-4 col-xs-6 services-w3grid">
-					<span class="glyphicon glyphicon-heart hi-icon" aria-hidden="true"></span>
+					<a href="#"><span class="glyphicon glyphicon-heart hi-icon" aria-hidden="true"></span></a>
 					<h5>JAVA</h5>
 					<p>Itaque earum rerum hic a sapiente delectus</p>
 				</div>
@@ -351,17 +352,18 @@
     
     <script type="text/javascript">	
     
+    //简单注册
     function commit(){
     		var name = $("#name").val();
-    		var email = $("#email").val();
-    		if (name == null || name == "" || name == "undefined" || email == null || email == "" || email == "undefined") {
-    			alert("请填写姓名和邮箱");
+    		var phone = $("#phone").val();
+    		if (name == null || name == "" || name == "undefined" || phone == null || phone == "" || phone == "undefined") {
+    			alert("请填写姓名和电话");
     			return false;
     		}
     		$.ajax({
     			type:"POST",
     			url:"/index/sentContact",
-    			data:{"name":name,"email":email},
+    			data:{"name":name,"phone":phone},
     			dataType:"json",
     			success:function(data){
     				if (data.stauts == "success") {

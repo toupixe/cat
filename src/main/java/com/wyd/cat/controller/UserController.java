@@ -48,7 +48,13 @@ public class UserController extends BaseController{
 		return CommonResponseType.create(userDto,"success");
 	}
 	
-	/**注册获取验证码*/
+	/**
+	 * 
+	 * <p>Title: getTotp</p>  
+	 * <p>Description: 获取验证码</p>  
+	 * @param phone
+	 * @return
+	 */
 	@RequestMapping("/getTotp")
 	@ResponseBody
 	public CommonResponseType getTotp(String phone) {	
