@@ -4,7 +4,8 @@ import com.wyd.cat.model.Img;
 import com.wyd.cat.model.ImgExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public interface ImgMapper {
     long countByExample(ImgExample example);
 

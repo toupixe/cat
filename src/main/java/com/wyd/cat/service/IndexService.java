@@ -5,8 +5,13 @@ import com.wyd.cat.exception.BusinessException;
 import com.wyd.cat.exception.SystemException;
 
 public interface IndexService {
-	/**将联系人保存
-	 * @throws SystemException 
-	 * @throws BusinessException */
+	/**
+	 * 
+	 * <p>Title: saveContact</p>  
+	 * <p>Description:保存联络信息 </p>  
+	 * @param contactDto 联络信息对象
+	 * @throws SystemException 系统异常
+	 * @throws BusinessException 业务异常
+	 */
 	public void saveContact(ContactDto contactDto) throws SystemException, BusinessException;
 }

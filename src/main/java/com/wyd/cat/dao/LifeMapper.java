@@ -4,7 +4,8 @@ import com.wyd.cat.model.Life;
 import com.wyd.cat.model.LifeExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public interface LifeMapper {
     long countByExample(LifeExample example);
 

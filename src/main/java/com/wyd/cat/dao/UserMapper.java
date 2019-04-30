@@ -4,7 +4,8 @@ import com.wyd.cat.model.User;
 import com.wyd.cat.model.UserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public interface UserMapper {
     long countByExample(UserExample example);
 

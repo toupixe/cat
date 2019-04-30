@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wyd.cat.dao.ContactMapper">
   <resultMap id="BaseResultMap" type="com.wyd.cat.model.Contact">
     <id column="id" jdbcType="INTEGER" property="id" />
@@ -203,9 +203,7 @@
         login_id = #{record.loginId,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
+  
   </update>
   <update id="updateByExample" parameterType="map">
     update tb_contact
@@ -220,9 +218,7 @@
       email = #{record.email,jdbcType=VARCHAR},
       message = #{record.message,jdbcType=VARCHAR},
       login_id = #{record.loginId,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
+
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.wyd.cat.model.Contact">
     update tb_contact

@@ -5,7 +5,8 @@ import com.wyd.cat.model.Contact;
 import com.wyd.cat.model.ContactExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public interface ContactMapper {
     long countByExample(ContactExample example);
 
