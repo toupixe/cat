@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 
 import com.wyd.cat.dao.ContactMapper;
 import com.wyd.cat.dto.ContactDto;
-import com.wyd.cat.exception.BusinessException;
-import com.wyd.cat.exception.SystemException;
 import com.wyd.cat.service.IndexService;
+import com.wyd.cat.webutils.exception.BusinessException;
+import com.wyd.cat.webutils.exception.SystemException;
 
 @Service
 public class ContactImpl implements IndexService {

@@ -1,8 +1,8 @@
 package com.wyd.cat.service;
 
 import com.wyd.cat.dto.ContactDto;
-import com.wyd.cat.exception.BusinessException;
-import com.wyd.cat.exception.SystemException;
+import com.wyd.cat.webutils.exception.BusinessException;
+import com.wyd.cat.webutils.exception.SystemException;
 
 public interface IndexService {
 	/**

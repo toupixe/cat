@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.wyd.cat.errorenum.EmBusinessError;
-import com.wyd.cat.exception.BusinessException;
-import com.wyd.cat.result.CommonResponseType;
-import com.wyd.cat.result.Result;
+import com.wyd.cat.webutils.error.errornum.EmBusinessError;
+import com.wyd.cat.webutils.exception.BusinessException;
+import com.wyd.cat.webutils.result.CommonResponseType;
+import com.wyd.cat.webutils.result.Result;
 
 public class BaseController {
 	@ExceptionHandler(Exception.class)

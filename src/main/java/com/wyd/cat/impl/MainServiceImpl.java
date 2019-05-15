@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.wyd.cat.model.Contact;
 import com.wyd.cat.model.User;
 import com.wyd.cat.service.MainService;
-import com.wyd.cat.utils.UserUtils;
+import com.wyd.cat.webutils.utils.UserUtils;
 
 @Service
 public class MainServiceImpl implements MainService{

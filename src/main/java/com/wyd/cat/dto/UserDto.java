@@ -1,8 +1,9 @@
 package com.wyd.cat.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class UserDto {
+public class UserDto implements Serializable {
 	private Integer id;
 
     private String loginId;

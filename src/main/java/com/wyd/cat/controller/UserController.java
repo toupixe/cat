@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wyd.cat.dto.UserDto;
-import com.wyd.cat.errorenum.EmBusinessError;
-import com.wyd.cat.exception.BusinessException;
 import com.wyd.cat.form.UserForm;
-import com.wyd.cat.result.CommonResponseType;
 import com.wyd.cat.service.UserService;
-import com.wyd.cat.validator.BeanValidator;
-import com.wyd.cat.validator.ValidatorImplements;
+import com.wyd.cat.webutils.error.errornum.EmBusinessError;
+import com.wyd.cat.webutils.exception.BusinessException;
+import com.wyd.cat.webutils.result.CommonResponseType;
+import com.wyd.cat.webutils.validator.BeanValidator;
+import com.wyd.cat.webutils.validator.ValidatorImplements;
 
 @Controller
 @RequestMapping("/user")
