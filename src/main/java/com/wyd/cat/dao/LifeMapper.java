@@ -1,5 +1,6 @@
 package com.wyd.cat.dao;
 
+import com.wyd.cat.dto.LifeDto;
 import com.wyd.cat.model.Life;
 import com.wyd.cat.model.LifeExample;
 import java.util.List;
@@ -28,4 +29,21 @@ public interface LifeMapper {
     int updateByPrimaryKeySelective(Life record);
 
     int updateByPrimaryKey(Life record);
+    
+    /**
+     * 
+     * <p>Title: selectLifeLst</p>  
+     * <p>Description: 获取一个热度前10的生活lst</p>  
+     * @return
+     */
+    List<LifeDto>selectLifeLst();
+    
+    /**
+     * 
+     * <p>Title: getLifeById</p>  
+     * <p>Description: 通过id查询一个生活详情数据</p>  
+     * @param lifeId
+     * @return
+     */
+    LifeDto getLifeById(@Param("lifeId") int lifeId);
 }

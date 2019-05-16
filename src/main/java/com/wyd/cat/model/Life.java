@@ -22,8 +22,28 @@ public class Life {
     private String updateBy;
 
     private String isDelete;
+    
+    private Date time;
+    
+    
 
-    public Integer getId() {
+    /** 
+	* 获取time 
+	* @return time
+	*/
+	public Date getTime() {
+		return time;
+	}
+
+	/** 
+	* 设置time 
+	* @param time 
+	*/
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
+	public Integer getId() {
         return id;
     }
 

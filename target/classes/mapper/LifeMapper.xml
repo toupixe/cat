@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wyd.cat.dao.LifeMapper">
-  <resultMap id="BaseResultMap" type="com.wyd.cat.model.Life">
+  <resultMap id="BaseResultMap" type="com.wyd.cat.dto.LifeDto">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="author" jdbcType="VARCHAR" property="author" />
@@ -12,6 +12,8 @@
     <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
     <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
     <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, author, context, img_id, create_at, create_by, update_at, update_by, is_delete
+    L.id, title, author, context, create_at, create_by, update_at, update_by, is_delete,time
   </sql>
   <select id="selectByExample" parameterType="com.wyd.cat.model.LifeExample" resultMap="BaseResultMap">
     select
@@ -287,4 +289,25 @@
       is_delete = #{isDelete,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectLifeLst" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />,I.img_url
+    from 
+    	tb_life L
+	left join 
+		tb_img I
+	on 
+		L.img_id = I.img_id
+    limit 0 ,10
+  </select>
+  
+  <select id="getLifeById" parameterType="int" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    	tb_life L
+    where
+    	L.id = #{lifeId}
+  </select>
 </mapper>

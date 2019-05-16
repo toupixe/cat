@@ -11,7 +11,8 @@ public enum EmBusinessError implements CommonError {
 	OTP_IS_ERROR(20002,"验证码错误"),
 	/**系统错误*/
 	USER_NOT_EXCIT(30001,"用户不存在"),
-	SENT_CONTACT_ERROR(30002,"发送联系人失败")
+	SENT_CONTACT_ERROR(30002,"发生了错误了，请联系管理员"),
+	LIFE_NOT_EXCIT(40001,"生活数据不存在")
 	
 	
 	

@@ -1,10 +1,22 @@
 package com.wyd.cat.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.wyd.cat.dto.LifeDto;
+import com.wyd.cat.service.LifeService;
+import com.wyd.cat.webutils.error.errornum.EmBusinessError;
+import com.wyd.cat.webutils.exception.BusinessException;
+import com.wyd.cat.webutils.exception.SystemException;
 import com.wyd.cat.webutils.result.CommonResponseType;
+import com.wyd.cat.webutils.result.Result;
 
 /**
  * 
@@ -14,7 +26,11 @@ import com.wyd.cat.webutils.result.CommonResponseType;
  */
 @Controller
 @RequestMapping("/life")
+@CrossOrigin(allowCredentials="true",allowedHeaders="*")
 public class LifeController extends BaseController{
+	
+	@Autowired
+	private LifeService lifeService;
 	
 	/**
 	 * 
@@ -22,10 +38,49 @@ public class LifeController extends BaseController{
 	 * <p>Description: 获取关于生活的列表信息</p>  
 	 * @return CommonResponseType 封装返回信息的类
 	 */
-	@RequestMapping("/life/getLifeLst")
+	@RequestMapping("/getLifeLst")
 	@ResponseBody
 	public CommonResponseType getLifeLst() {
+		List<LifeDto> lifeList = null;
+		try {
+			lifeList = lifeService.getLifeList();
+			if (lifeList == null) {
+				Map<String,Object> errorMap = new HashMap<>();
+				errorMap.put("errorMsg", EmBusinessError.LIFE_NOT_EXCIT.getErrorMsg());
+				errorMap.put("errorCode", EmBusinessError.LIFE_NOT_EXCIT.getErrorCode());
+				return CommonResponseType.create(errorMap,Result.FAIL.getStauts());
+			}
+			return CommonResponseType.create(lifeList, Result.SUCCESS.getStauts());
+		} catch (SystemException e) {
+			Map<String,Object> errorMap = new HashMap<>();
+			errorMap.put("errorMsg", EmBusinessError.SENT_CONTACT_ERROR.getErrorMsg());
+			errorMap.put("errorCode", EmBusinessError.SENT_CONTACT_ERROR.getErrorCode());
+			return CommonResponseType.create(errorMap,Result.FAIL.getStauts());
+		} catch (BusinessException e) {
+			Map<String,Object> errorMap = new HashMap<>();
+			errorMap.put("errorMsg", EmBusinessError.SENT_CONTACT_ERROR.getErrorMsg());
+			errorMap.put("errorCode", EmBusinessError.SENT_CONTACT_ERROR.getErrorCode());
+			return CommonResponseType.create(errorMap,Result.FAIL.getStauts());
+		}
+	}
+	@RequestMapping("/getLife")
+	@ResponseBody
+	public CommonResponseType getLifeById(String lifeId) {
+		LifeDto LifeDto = null;
+		try {
+			LifeDto = lifeService.getLifeById(lifeId);
+		} catch (SystemException e) {
+			Map<String,Object> errorMap = new HashMap<>();
+			errorMap.put("errorMsg", EmBusinessError.SENT_CONTACT_ERROR.getErrorMsg());
+			errorMap.put("errorCode", EmBusinessError.SENT_CONTACT_ERROR.getErrorCode());
+			return CommonResponseType.create(errorMap,Result.FAIL.getStauts());
+		} catch (BusinessException e) {
+			Map<String,Object> errorMap = new HashMap<>();
+			errorMap.put("errorMsg", EmBusinessError.SENT_CONTACT_ERROR.getErrorMsg());
+			errorMap.put("errorCode", EmBusinessError.SENT_CONTACT_ERROR.getErrorCode());
+			return CommonResponseType.create(errorMap,Result.FAIL.getStauts());
+		}
+		return CommonResponseType.create(LifeDto, Result.SUCCESS.getStauts());
 		
-		return null;
 	}
 }
