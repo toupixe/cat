@@ -28,4 +28,5 @@ public interface LifeService {
 	 * @param lifeId
 	 */
 	public LifeDto getLifeById(String lifeId)throws SystemException, BusinessException;
+	
 }

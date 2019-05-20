@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyd.cat.dao.TypeMapper">
+  <resultMap id="BaseResultMap" type="com.wyd.cat.dto.LifeTypeDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="life_id" jdbcType="INTEGER" property="lifeId" />
+    <result column="type_id" jdbcType="VARCHAR" property="typeId" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+  </resultMap>
+	
+	<select id="getLifeTypeByLifeId" parameterType="int" resultMap="BaseResultMap">
+	select
+		L.type_id,T.type_name,
+		L.create_at,L.create_by,L.update_at,L.update_by,L.is_delete
+	from
+		tb_life_type L
+	left join
+		tb_type T
+	on 
+		L.type_id = T.type_id
+	where
+		L.life_id = #{lifeId}
+	and
+		L.is_delete = 'f'	
+	</select>
+</mapper>

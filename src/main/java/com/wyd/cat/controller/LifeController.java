@@ -63,6 +63,14 @@ public class LifeController extends BaseController{
 			return CommonResponseType.create(errorMap,Result.FAIL.getStauts());
 		}
 	}
+	
+	/**
+	 * 
+	 * <p>Title: getLifeById</p>  
+	 * <p>Description: 获取一个指定id的生活详情数据</p>  
+	 * @param lifeId
+	 * @return
+	 */
 	@RequestMapping("/getLife")
 	@ResponseBody
 	public CommonResponseType getLifeById(String lifeId) {
@@ -81,6 +89,5 @@ public class LifeController extends BaseController{
 			return CommonResponseType.create(errorMap,Result.FAIL.getStauts());
 		}
 		return CommonResponseType.create(LifeDto, Result.SUCCESS.getStauts());
-		
 	}
 }

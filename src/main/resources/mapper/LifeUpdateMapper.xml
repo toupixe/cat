@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyd.cat.dao.LifeUpdateMapper">
+  <resultMap id="BaseResultMap" type="com.wyd.cat.dto.LifeUpdateDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="life_id" jdbcType="INTEGER" property="lifeId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_title" jdbcType="VARCHAR" property="updateTitle" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+  </resultMap>
+	
+	<select id="getLifeUpdateByLifeId" parameterType="int" resultMap="BaseResultMap">
+	select
+		L.user_id,U.user_name,L.update_time,L.update_title
+	from
+		tb_life_update L
+	left join
+		tb_user U
+	on 
+		L.user_id = U.login_id
+	where
+		L.life_id = #{lifeId}	
+	order By L.update_time asc
+	</select>
+</mapper>

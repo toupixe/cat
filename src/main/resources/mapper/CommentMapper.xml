@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyd.cat.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.wyd.cat.dto.CommentDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="life_id" jdbcType="INTEGER" property="lifeId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="context" jdbcType="VARCHAR" property="context" />
+    <result column="replycount" jdbcType="VARCHAR" property="replycount" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
+    <result column="is_better" jdbcType="VARCHAR" property="isBetter" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+  </resultMap>
+	
+	<select id="getLifeCommentByLifeId" parameterType="int" resultMap="BaseResultMap">
+	select
+		L.user_id,U.user_name,L.is_better,L.time,L.context,L.replycount,
+		L.create_at,L.create_by,L.update_at,L.update_by,L.is_delete
+	from
+		tb_comment L
+	left join
+		tb_user U
+	on 
+		L.user_id = U.login_id
+	where
+		L.life_id = #{lifeId}
+	and
+		L.is_delete = 'f'	
+	</select>
+</mapper>
