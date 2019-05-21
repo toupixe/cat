@@ -12,6 +12,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 
 
 @SpringBootApplication
+@EnableRedisHttpSession  
 @MapperScan(value = "com.wyd.cat.dao")
 @ComponentScan(basePackages={"com.wyd.cat"})
 /*public class App extends SpringBootServletInitializer{

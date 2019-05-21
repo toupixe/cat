@@ -1,12 +1,16 @@
 package com.wyd.cat.dto;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.wyd.cat.model.Life;
 
 
-public class LifeDto extends Life {
+public class LifeDto extends Life implements Serializable{
+	/** serialVersionUID*/
+	private static final long serialVersionUID = 1L;
+
 	private String imgUrl;
 	
 	/**

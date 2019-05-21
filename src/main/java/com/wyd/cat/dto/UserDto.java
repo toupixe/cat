@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class UserDto implements Serializable {
+	/** serialVersionUID*/
+	private static final long serialVersionUID = 1L;
+
 	private Integer id;
 
     private String loginId;

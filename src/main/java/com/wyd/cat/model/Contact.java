@@ -24,8 +24,28 @@ public class Contact {
     private String message;
 
     private String loginId;
+    
+    private String subject;
 
-    public Integer getId() {
+    
+    
+    /** 
+	* 获取subject 
+	* @return subject
+	*/
+	public String getSubject() {
+		return subject;
+	}
+
+	/** 
+	* 设置subject 
+	* @param subject 
+	*/
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	public Integer getId() {
         return id;
     }
 

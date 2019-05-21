@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,17 +35,31 @@ public class ContactController {
 	@Autowired
 	private RedisUtils redisUtils;
 	
+	@Autowired
+	private HttpSession session;
+	
+	private final static String finalName = "游客";
+	
 	/**
 	 * 发送联系人信息
 	 * */
 	@RequestMapping("/sentContact")
 	@ResponseBody
-	public CommonResponseType sendContact(Map<String,Object>map,String name,String email) {
+	public CommonResponseType sendContact(Map<String,Object>map,String name,String email, String subject, String message, String phoneNumber) {
 		try {
-			UserDto usergg = new UserDto();
-			BeanUtils.copyProperties(JSONObject.parseObject((String) redisUtils.get("currentUser"), UserDto.class), usergg);
+			//从session中取出当前登陆用户
 			Date date = new Date();
-			contactService.saveContact(new ContactDto(name, email, usergg.getUserName(), usergg.getUserName(),date,date));
+			UserDto usergg = new UserDto();
+			ContactDto contactDto = null;
+			String object = (String) session.getAttribute("loginUser");
+			//如果用户已经登陆
+			if(object != null && !"".equals(object)) {
+				BeanUtils.copyProperties(JSONObject.parseObject(object, UserDto.class), usergg);
+			} else {
+				usergg.setUserName(finalName);
+			}
+			contactDto = new ContactDto(name, email, phoneNumber, subject, message, usergg.getUserName(), usergg.getUserName(), date, date);
+			contactService.saveContact(contactDto);
 			map.put("msg", "发送成功");
 			return CommonResponseType.create(map);
 		} catch (SystemException e) {

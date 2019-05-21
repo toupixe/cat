@@ -13,6 +13,7 @@
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="message" jdbcType="VARCHAR" property="message" />
     <result column="login_id" jdbcType="VARCHAR" property="loginId" />
+    <result column="subject" jdbcType="VARCHAR" property="subject" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -279,6 +280,7 @@
     			phone_number,
     			email,
     			message,
+    			subject,
     			create_at,
     			create_by,
     			update_at,
@@ -291,6 +293,7 @@
     			#{con.phoneNumber},
     			#{con.email},
     			#{con.message},
+    			#{con.subject},
     			#{con.createAt},
     			#{con.createBy},
     			#{con.updateAt},
