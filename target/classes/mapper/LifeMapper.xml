@@ -74,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    L.id, title, author, context, create_at, create_by, update_at, update_by, is_delete,time
+    L.id, L.title, L.author, L.context, L.create_at, L.create_by, L.update_at, L.update_by, L.is_delete,L.time
   </sql>
   
   
@@ -292,15 +292,24 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   
-  <select id="selectLifeLst" resultMap="BaseResultMap">
+  <select id="selectLifeLst" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />,I.img_url
     from 
     	tb_life L
+    <if test="lifeType != null">
+	inner join 
+		tb_life_type T
+	on T.life_id = L.id
+	</if>
 	left join 
 		tb_img I
 	on 
 		L.img_id = I.img_id
+	<if test="lifeType != null">
+	where 
+		T.type_id = #{lifeType}
+	</if>
     limit 0 ,10
   </select>
   

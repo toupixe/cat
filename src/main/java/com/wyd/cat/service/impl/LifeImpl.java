@@ -35,7 +35,7 @@ public class LifeImpl implements LifeService {
 	
 	@Override
 	public List<LifeDto> getLifeList() throws SystemException, BusinessException {
-		return lifeMapper.selectLifeLst();
+		return lifeMapper.selectLifeLst(null);
 	}
 
 	@Override
@@ -59,6 +59,11 @@ public class LifeImpl implements LifeService {
 		}
 		return lifeDto;
 		
+	}
+
+	@Override
+	public List<LifeDto> getLifeList(String lifeType) throws SystemException, BusinessException {
+		return lifeMapper.selectLifeLst(lifeType);
 	}
 
 }

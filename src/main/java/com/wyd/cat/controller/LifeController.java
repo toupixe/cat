@@ -66,6 +66,40 @@ public class LifeController extends BaseController{
 	
 	/**
 	 * 
+	 * <p>Title: getLifeLst</p>  
+	 * <p>Description: 通过lifeType获取关于生活的列表信息</p>  
+	 * @return CommonResponseType 封装返回信息的类
+	 */
+	@RequestMapping("/getLifeLstByLifeType")
+	@ResponseBody
+	public CommonResponseType getLifeLst(String lifeType) {
+		List<LifeDto> lifeList = null;
+		try {
+			lifeList = lifeService.getLifeList(lifeType);
+			if (lifeList == null) {
+				Map<String,Object> errorMap = new HashMap<>();
+				errorMap.put("errorMsg", EmBusinessError.LIFE_NOT_EXCIT.getErrorMsg());
+				errorMap.put("errorCode", EmBusinessError.LIFE_NOT_EXCIT.getErrorCode());
+				return CommonResponseType.create(errorMap,Result.FAIL.getStauts());
+			}
+			return CommonResponseType.create(lifeList, Result.SUCCESS.getStauts());
+		} catch (SystemException e) {
+			Map<String,Object> errorMap = new HashMap<>();
+			errorMap.put("errorMsg", EmBusinessError.SENT_CONTACT_ERROR.getErrorMsg());
+			errorMap.put("errorCode", EmBusinessError.SENT_CONTACT_ERROR.getErrorCode());
+			return CommonResponseType.create(errorMap,Result.FAIL.getStauts());
+		} catch (BusinessException e) {
+			Map<String,Object> errorMap = new HashMap<>();
+			errorMap.put("errorMsg", EmBusinessError.SENT_CONTACT_ERROR.getErrorMsg());
+			errorMap.put("errorCode", EmBusinessError.SENT_CONTACT_ERROR.getErrorCode());
+			return CommonResponseType.create(errorMap,Result.FAIL.getStauts());
+		}
+	}
+	
+	
+	
+	/**
+	 * 
 	 * <p>Title: getLifeById</p>  
 	 * <p>Description: 获取一个指定id的生活详情数据</p>  
 	 * @param lifeId
@@ -89,5 +123,19 @@ public class LifeController extends BaseController{
 			return CommonResponseType.create(errorMap,Result.FAIL.getStauts());
 		}
 		return CommonResponseType.create(LifeDto, Result.SUCCESS.getStauts());
+	}
+	
+	/**
+	 * 
+	 * <p>Title: getLifeById</p>  
+	 * <p>Description: 获取一个指定id的生活详情数据</p>  
+	 * @param lifeId
+	 * @return
+	 */
+	@RequestMapping("/uploadLifePic")
+	@ResponseBody
+	public CommonResponseType uploadLifePic(String lifeId) {
+		return null;
+		
 	}
 }

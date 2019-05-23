@@ -18,4 +18,21 @@ public interface TypeMapper {
 	 */
 	List<LifeTypeDto> getLifeTypeByLifeId(@Param("lifeId") Integer lifeId);
 
+	/**
+	 * 
+	 * <p>Title: getAllType</p>  
+	 * <p>Description:获取所有标签 </p>  
+	 * @return
+	 */
+	List<LifeTypeDto> getAllType();
+
+	/**
+	 * 
+	 * <p>Title: getTypeByCategory</p>  
+	 * <p>Description: 通过Type分类查询type对象</p>  
+	 * @param category
+	 * @return
+	 */
+	List<LifeTypeDto> getTypeByCategory(@Param("category") String category);
+
 }

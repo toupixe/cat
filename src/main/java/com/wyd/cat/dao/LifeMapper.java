@@ -34,9 +34,10 @@ public interface LifeMapper {
      * 
      * <p>Title: selectLifeLst</p>  
      * <p>Description: 获取一个热度前10的生活lst</p>  
+     * @param lifeType 
      * @return
      */
-    List<LifeDto>selectLifeLst();
+    List<LifeDto>selectLifeLst(@Param("lifeType") String lifeType);
     
     /**
      * 

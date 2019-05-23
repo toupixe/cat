@@ -22,4 +22,14 @@ public class TypeServiceImpl implements TypeService {
 		return typeMapper.getLifeTypeByLifeId(id);
 	}
 
+	@Override
+	public List<LifeTypeDto> getAllType() throws BusinessException {
+		return typeMapper.getAllType();
+	}
+
+	@Override
+	public List<LifeTypeDto> getTypeByCategory(String category)throws BusinessException  {
+		return typeMapper.getTypeByCategory(category);
+	}
+
 }

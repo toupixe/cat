@@ -13,6 +13,13 @@
     <result column="type_name" jdbcType="VARCHAR" property="typeName" />
   </resultMap>
 	
+	<resultMap id="TYPEResultMap" type="com.wyd.cat.dto.TypeDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type_id" jdbcType="VARCHAR" property="typeId" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+  </resultMap>
+	
+	
 	<select id="getLifeTypeByLifeId" parameterType="int" resultMap="BaseResultMap">
 	select
 		L.type_id,T.type_name,
@@ -28,4 +35,23 @@
 	and
 		L.is_delete = 'f'	
 	</select>
+	
+	<select id="getAllType"  resultMap="TYPEResultMap">
+		select
+		T.type_id,T.type_name
+	from
+		tb_type T
+	WHERE
+		type_cate != ''
+	</select>
+	
+	<select id="getTypeByCategory"  parameterType="java.lang.String" resultMap="TYPEResultMap">
+		select
+		T.type_id,T.type_name
+	from
+		tb_type T
+	WHERE
+		type_cate = #{category} 
+	</select>
+	
 </mapper>

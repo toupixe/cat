@@ -28,5 +28,13 @@ public interface LifeService {
 	 * @param lifeId
 	 */
 	public LifeDto getLifeById(String lifeId)throws SystemException, BusinessException;
+
+	/**
+	 * 
+	 * <p>Title: getLifeList</p>  
+	 * <p>Description: 通过LifeType获取一个前10的生活的数据list</p>  
+	 * @return
+	 */
+	public List<LifeDto> getLifeList(String lifeType)throws SystemException, BusinessException;
 	
 }
