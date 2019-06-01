@@ -1,16 +1,33 @@
 package com.wyd.cat.controller;
 
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
+
+
+
+import javax.servlet.ServletException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.wyd.cat.dto.LifeDto;
+import com.wyd.cat.model.Life;
 import com.wyd.cat.service.LifeService;
 import com.wyd.cat.webutils.error.errornum.EmBusinessError;
 import com.wyd.cat.webutils.exception.BusinessException;
@@ -32,6 +49,8 @@ public class LifeController extends BaseController{
 	@Autowired
 	private LifeService lifeService;
 	
+	@Autowired
+	private HttpServletRequest httpServletRequest;
 	/**
 	 * 
 	 * <p>Title: getLifeLst</p>  
@@ -125,17 +144,33 @@ public class LifeController extends BaseController{
 		return CommonResponseType.create(LifeDto, Result.SUCCESS.getStauts());
 	}
 	
-	/**
-	 * 
-	 * <p>Title: getLifeById</p>  
-	 * <p>Description: 获取一个指定id的生活详情数据</p>  
-	 * @param lifeId
-	 * @return
-	 */
 	@RequestMapping("/uploadLifePic")
 	@ResponseBody
-	public CommonResponseType uploadLifePic(String lifeId) {
-		return null;
-		
-	}
+	public CommonResponseType uploadLifePic(Life life ,MultipartFile file,String cate, String type) {
+
+		String fileName = file.getOriginalFilename();
+		//设置上传的路径
+		String realPath = httpServletRequest.getServletContext().getRealPath(File.separator) + "\\uploadFile\\" + fileName;
+		System.out.println(realPath);
+        if (file != null && !file.isEmpty()) {
+        	byte[] bytes;
+			try {
+				bytes = file.getBytes();
+				Path path = Paths.get(realPath);
+	            Files.write(path, bytes);
+			} catch (IOException e) {
+				Map<String,Object> errorMap = new HashMap<>();
+				errorMap.put("errorMsg", EmBusinessError.FILE_DIC_NOT_EXCIT.getErrorMsg());
+				errorMap.put("errorCode", EmBusinessError.FILE_DIC_NOT_EXCIT.getErrorCode());
+				return CommonResponseType.create(errorMap,Result.FAIL.getStauts());
+			}
+            
+        }
+        	//保存文件
+           // saveUploadedFiles(Arrays.asList(uploadfile));
+ 
+        return CommonResponseType.create("保存成功", Result.SUCCESS.getStauts());
+ 
+    }
+
 }

@@ -1,5 +1,7 @@
 package com.wyd.cat.controller;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.wyd.cat.dto.LifeTypeDto;
+import com.wyd.cat.model.Life;
 import com.wyd.cat.service.TypeService;
 import com.wyd.cat.webutils.exception.BusinessException;
 import com.wyd.cat.webutils.result.CommonResponseType;
@@ -71,6 +75,4 @@ public class TypeController {
 		return CommonResponseType.create(lifeTypeDto, Result.SUCCESS.getStauts());
 		
 	}
-	
-	
 }

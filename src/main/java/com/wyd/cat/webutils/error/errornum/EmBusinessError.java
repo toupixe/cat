@@ -12,7 +12,9 @@ public enum EmBusinessError implements CommonError {
 	/**系统错误*/
 	USER_NOT_EXCIT(30001,"用户不存在"),
 	SENT_CONTACT_ERROR(30002,"发生了错误了，请联系管理员"),
-	LIFE_NOT_EXCIT(40001,"生活数据不存在")
+	LIFE_NOT_EXCIT(40001,"生活数据不存在"),
+	FILE_DIC_NOT_EXCIT(50001,"文件夹不存在"),
+	FILE_NOT_EXCIT(50001,"文件不存在")
 	
 	
 	
