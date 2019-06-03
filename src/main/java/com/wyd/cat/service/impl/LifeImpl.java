@@ -10,6 +10,7 @@ import com.wyd.cat.dto.CommentDto;
 import com.wyd.cat.dto.LifeDto;
 import com.wyd.cat.dto.LifeTypeDto;
 import com.wyd.cat.dto.LifeUpdateDto;
+import com.wyd.cat.model.Life;
 import com.wyd.cat.service.CommentService;
 import com.wyd.cat.service.LifeService;
 import com.wyd.cat.service.LifeUpdateService;
@@ -64,6 +65,12 @@ public class LifeImpl implements LifeService {
 	@Override
 	public List<LifeDto> getLifeList(String lifeType) throws SystemException, BusinessException {
 		return lifeMapper.selectLifeLst(lifeType);
+	}
+
+	@Override
+	public void save(Life life) throws BusinessException {
+		lifeMapper.insert(life);
+		
 	}
 
 }

@@ -2,7 +2,10 @@ package com.wyd.cat.controller;
 
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -148,16 +151,36 @@ public class LifeController extends BaseController{
 	@ResponseBody
 	public CommonResponseType uploadLifePic(Life life ,MultipartFile file,String cate, String type) {
 
+		try {
+			lifeService.save(life);
+		} catch (BusinessException e1) {
+			Map<String,Object> errorMap = new HashMap<>();
+			errorMap.put("errorMsg", EmBusinessError.LIFE_NOT_ERROR.getErrorMsg());
+			errorMap.put("errorCode", EmBusinessError.LIFE_NOT_ERROR.getErrorCode());
+			return CommonResponseType.create(errorMap,Result.FAIL.getStauts());
+		}
+		
 		String fileName = file.getOriginalFilename();
 		//设置上传的路径
-		String realPath = httpServletRequest.getServletContext().getRealPath(File.separator) + "\\uploadFile\\" + fileName;
+		String realPath = httpServletRequest.getServletContext().getRealPath(File.separator) + "\\uploadFile";
 		System.out.println(realPath);
         if (file != null && !file.isEmpty()) {
-        	byte[] bytes;
+        	
 			try {
-				bytes = file.getBytes();
-				Path path = Paths.get(realPath);
-	            Files.write(path, bytes);
+				
+				InputStream in= file.getInputStream();//声明输入输出流
+	            
+	            OutputStream out=new FileOutputStream(new File(realPath+"\\"+fileName));//指定输出流的位置;
+	            
+	            byte []buffer =new byte[1024];
+	            int len=0;
+	            while((len=in.read(buffer))!=-1){
+	                out.write(buffer, 0, len);
+	                out.flush();                //类似于文件复制，将文件存储到输入流，再通过输出流写入到上传位置
+	            }                               //这段代码也可以用IOUtils.copy(in, out)工具类的copy方法完成
+	                                            
+	            out.close();
+	            in.close();
 			} catch (IOException e) {
 				Map<String,Object> errorMap = new HashMap<>();
 				errorMap.put("errorMsg", EmBusinessError.FILE_DIC_NOT_EXCIT.getErrorMsg());

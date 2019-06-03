@@ -3,6 +3,7 @@ package com.wyd.cat.service;
 import java.util.List;
 
 import com.wyd.cat.dto.LifeDto;
+import com.wyd.cat.model.Life;
 import com.wyd.cat.webutils.exception.BusinessException;
 import com.wyd.cat.webutils.exception.SystemException;
 
@@ -36,5 +37,15 @@ public interface LifeService {
 	 * @return
 	 */
 	public List<LifeDto> getLifeList(String lifeType)throws SystemException, BusinessException;
+
+	/**
+	 * 
+	 * <p>Title: save</p>  
+	 * <p>Description: 保存一个life对象</p>  
+	 * @param life
+	 * @throws SystemException
+	 * @throws BusinessException
+	 */
+	public void save(Life life)throws BusinessException;
 	
 }
