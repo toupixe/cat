@@ -2,6 +2,7 @@ package com.wyd.cat.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.wyd.cat.dto.LifeUpdateDto;
@@ -17,5 +18,11 @@ public interface LifeUpdateMapper {
 	 * @return
 	 */
 	List<LifeUpdateDto> getLifeUpdateByLifeId(Integer id);
+	
+	/**
+	 * 插入一条生活的更新日志
+	 * @param lifeUpdateDto
+	 */
+	void insertOneLifeUpdate(@Param("lifeUpdateDto") LifeUpdateDto lifeUpdateDto);
 
 }

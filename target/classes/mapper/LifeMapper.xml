@@ -335,17 +335,18 @@
   
   
    <sql id="insert_Column_List">
-    title, author, context, create_at, create_by, update_at, update_by, is_delete,time,
+    title, author, context, img_id, create_at, create_by, update_at, update_by, is_delete,time,
     content1,content2,content3,content4,content5,img1,img2,img3,img4,img5
   </sql>
-  <insert id="insert" parameterType="com.wyd.cat.model.Life">
+  <insert id="insert" parameterType="com.wyd.cat.model.Life" useGeneratedKeys="true" keyProperty="id">
     insert 
     	into tb_life (<include refid="insert_Column_List" />)
     values 
     	(
-    		#{title,jdbcType=VARCHAR},
+    		#{title,jdbcType=VARCHAR}, 
     		#{author,jdbcType=VARCHAR}, 
       		#{context,jdbcType=VARCHAR},
+      		#{imgId,jdbcType=VARCHAR},
       		#{createAt,jdbcType=TIMESTAMP}, 
       		#{createBy,jdbcType=VARCHAR},
       		#{updateAt,jdbcType=TIMESTAMP},

@@ -23,4 +23,22 @@
 		L.life_id = #{lifeId}	
 	order By L.update_time asc
 	</select>
+	
+	<insert id="insertOneLifeUpdate" parameterType="com.wyd.cat.dto.LifeUpdateDto">
+	insert into 
+		tb_life_update 
+		(
+			life_id,
+			update_time,
+			update_title,
+			user_id
+		)
+	values
+		(
+			#{lifeUpdateDto.lifeId},
+			#{lifeUpdateDto.updateTime},
+			#{lifeUpdateDto.updateTitle},
+			#{lifeUpdateDto.userId}
+		)
+	</insert>
 </mapper>

@@ -33,4 +33,11 @@ public interface TypeService {
 	 * @return
 	 */
 	List<LifeTypeDto> getTypeByCategory(String category)throws BusinessException;
+	
+	/**
+	 * 插入一条生活标签
+	 * @param lifeTypeDto
+	 * @throws BusinessException
+	 */
+	void insertOneLifeType(LifeTypeDto lifeTypeDto)throws BusinessException;
 }

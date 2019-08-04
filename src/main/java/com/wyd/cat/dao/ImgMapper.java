@@ -1,5 +1,6 @@
 package com.wyd.cat.dao;
 
+import com.wyd.cat.dto.ImgDto;
 import com.wyd.cat.model.Img;
 import com.wyd.cat.model.ImgExample;
 import java.util.List;
@@ -13,7 +14,12 @@ public interface ImgMapper {
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Img record);
+    /**
+     * 保存一张图片
+     * @param imgDto
+     * @return
+     */
+    int insert(ImgDto imgDto);
 
     int insertSelective(Img record);
 

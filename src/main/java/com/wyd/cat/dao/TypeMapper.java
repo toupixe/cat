@@ -34,5 +34,11 @@ public interface TypeMapper {
 	 * @return
 	 */
 	List<LifeTypeDto> getTypeByCategory(@Param("category") String category);
+	
+	/**
+	 * 插入一条生活标签
+	 * @param lifeTypeDto
+	 */
+	void insertOneLifeType(@Param("lifeTypeDto") LifeTypeDto lifeTypeDto);
 
 }

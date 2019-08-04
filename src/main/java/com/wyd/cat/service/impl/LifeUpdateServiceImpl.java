@@ -23,4 +23,10 @@ public class LifeUpdateServiceImpl implements LifeUpdateService {
 	public List<LifeUpdateDto> getLifeUpdateByLifeId(Integer id) throws SystemException, BusinessException {
 		return lifeUpdateMapper.getLifeUpdateByLifeId(id);
 	}
+
+	@Override
+	public void putOneLifeUpdate(LifeUpdateDto lifeUpdateDto) throws BusinessException{
+		lifeUpdateMapper.insertOneLifeUpdate(lifeUpdateDto);
+		
+	}
 }

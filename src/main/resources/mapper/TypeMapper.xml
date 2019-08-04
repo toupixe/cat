@@ -53,5 +53,30 @@
 	WHERE
 		type_cate = #{category} 
 	</select>
+	<insert id="insertOneLifeType" parameterType="com.wyd.cat.dto.LifeTypeDto">
+	insert into
+		tb_life_type
+		(
+			life_id,
+			type_id,
+			create_at,
+			create_by,
+			update_at,
+			update_by,
+			is_delete
+		)
+		values 
+		(
+			#{lifeTypeDto.lifeId},
+			#{lifeTypeDto.typeId},
+			#{lifeTypeDto.createAt},
+			#{lifeTypeDto.createBy},
+			#{lifeTypeDto.updateAt},
+			#{lifeTypeDto.updateBy},
+			#{lifeTypeDto.isDelete}
+		)
+	</insert>
+	
+	
 	
 </mapper>

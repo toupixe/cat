@@ -98,10 +98,10 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.wyd.cat.model.Img">
-    insert into tb_img (id, img_id, img_url, 
+  <insert id="insert" parameterType="com.wyd.cat.dto.ImgDto">
+    insert into tb_img (img_id, img_url, 
       img_name)
-    values (#{id,jdbcType=INTEGER}, #{imgId,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, 
+    values (#{imgId,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, 
       #{imgName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.wyd.cat.model.Img">

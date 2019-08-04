@@ -14,4 +14,10 @@ public interface LifeUpdateService {
 	 * @return
 	 */
 	public List<LifeUpdateDto>getLifeUpdateByLifeId(Integer id)throws SystemException, BusinessException;
+	
+	/**
+	 * 插入一条生活的更新日志
+	 * @param lifeUpdateDto
+	 */
+	public void putOneLifeUpdate(LifeUpdateDto lifeUpdateDto)throws BusinessException;
 }

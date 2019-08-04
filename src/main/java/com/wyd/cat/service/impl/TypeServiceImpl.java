@@ -32,4 +32,9 @@ public class TypeServiceImpl implements TypeService {
 		return typeMapper.getTypeByCategory(category);
 	}
 
+	@Override
+	public void insertOneLifeType(LifeTypeDto lifeTypeDto) throws BusinessException {
+		typeMapper.insertOneLifeType(lifeTypeDto);	
+	}
+
 }
